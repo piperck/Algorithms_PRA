@@ -1,6 +1,8 @@
 /**
  * Created by piperck on 15/11/12.
  */
+
+//data struct Queue.
 function Queue(){
     var items = [];
 
@@ -57,4 +59,26 @@ function PriorityQueue(){
             }
         }
     }
+}
+
+
+//hotPotato Game
+//nameList is player and number is pass flower times.
+function hotPotato(nameList, number){
+    var queue = new Queue();
+
+    for(var i=0;i<nameList.length;i++){
+        queue.enqueue(nameList[i]);
+    }
+
+    var eliminated = '';
+    while (queue.size() > 1){
+        for(var i=0;i<number;i++){
+            queue.enqueue(queue.dequeue());
+        }
+        eliminated = queue.dequeue();
+        console.log(eliminated + '在击鼓传花游戏中被淘汰。 ');
+    }
+
+    return queue.dequeue();
 }
